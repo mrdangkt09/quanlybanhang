@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Hóa đơn</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="main-header">
+        <h1>Quản lý Hóa đơn</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Trang chủ</a>
+            <a href="{{ url_for('products') }}">Sản phẩm</a>
+            <a href="{{ url_for('customers') }}">Khách hàng</a>
+            <a href="{{ url_for('cart') }}">Giỏ hàng</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="invoice-form-section">
+            <h2>Tạo Hóa đơn mới</h2>
+            <form method="POST" class="invoice-form">
+                <input type="text" name="customer_name" placeholder="Tên khách hàng" required>
+                <input type="number" step="0.01" name="total_price" placeholder="Tổng giá" required>
+                <button type="submit">Tạo hóa đơn</button>
+            </form>
+        </section>
+
+        <section class="invoice-list-section">
+            <h2>Danh sách hóa đơn</h2>
+            <table class="invoice-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên khách hàng</th>
+                        <th>Tổng giá</th>
+                        <th>Ngày</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for invoice in invoices %}
+                    <tr>
+                        <td>{{ invoice.id }}</td>
+                        <td>{{ invoice.customer_name }}</td>
+                        <td>{{ invoice.total_price }}</td>
+                        <td>{{ invoice.date }}</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('delete_invoice', id=invoice.id) }}">
+                                <button type="submit" class="delete-button">Xóa</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>

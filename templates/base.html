@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Hệ thống quản lý bán hàng</title>
+</head>
+<body>
+    <header>
+        <h1>Hệ thống quản lý bán hàng</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Trang chủ</a></li>
+                <li><a href="{{ url_for('products') }}"><i class="fas fa-box"></i> Sản phẩm</a></li>
+                <li><a href="{{ url_for('customers') }}"><i class="fas fa-users"></i> Khách hàng</a></li>
+                <li><a href="{{ url_for('invoices') }}"><i class="fas fa-file-invoice"></i> Hóa đơn</a></li>
+                <li><a href="{{ url_for('report') }}"><i class="fas fa-chart-line"></i> Báo cáo</a></li>
+                <li><a href="{{ url_for('cart') }}"><i class="fas fa-shopping-cart"></i> Giỏ hàng</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash">{{ messages[0] }}</div>
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

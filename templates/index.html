@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Quản lý Sản phẩm</h1>
+    </header>
+    
+    <main class="container">
+        <h2>Chào mừng đến với hệ thống quản lý bán hàng!</h2>
+        <p>Quản lý sản phẩm, khách hàng và hóa đơn dễ dàng và hiệu quả.</p>
+        
+
+        <div class="card-grid">
+            <div class="card">
+                <h3 class="card-title">Quản lý sản phẩm</h3>
+                <p class="card-description">Thêm, chỉnh sửa và xóa các sản phẩm dễ dàng.</p>
+                <a class="card-button" href="{{ url_for('products') }}">Quản lý sản phẩm</a>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">Quản lý khách hàng</h3>
+                <p class="card-description">Theo dõi và quản lý thông tin khách hàng của bạn.</p>
+                <a class="card-button" href="{{ url_for('customers') }}">Quản lý khách hàng</a>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">Quản lý hóa đơn</h3>
+                <p class="card-description">Tạo và theo dõi hóa đơn của khách hàng.</p>
+                <a class="card-button" href="{{ url_for('invoices') }}">Quản lý hóa đơn</a>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">Báo cáo</h3>
+                <p class="card-description">Xem báo cáo doanh thu và sản phẩm bán ra.</p>
+                <a class="card-button" href="{{ url_for('report') }}">Xem báo cáo</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Bản quyền thuộc về Nguyễn Minh Đăng</p>
+    </footer>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Quản lý sản phẩm</h2>
+    
+    <form method="POST" class="mb-4">
+        <div class="form-row">
+            <div class="col-12 col-md-3 mb-2">
+                <input type="text" name="name" class="form-control" placeholder="Tên sản phẩm" required>
+            </div>
+            <div class="col-12 col-md-3 mb-2">
+                <input type="text" name="category" class="form-control" placeholder="Danh mục" required>
+            </div>
+            <div class="col-12 col-md-3 mb-2">
+                <input type="number" name="price" class="form-control" placeholder="Giá" required>
+            </div>
+            <div class="col-12 col-md-3 mb-2">
+                <input type="number" name="quantity" class="form-control" placeholder="Số lượng" required>
+            </div>
+            <div class="col-12 mb-2">
+                <button type="submit" class="btn btn-primary btn-block">Thêm sản phẩm</button>
+            </div>
+        </div>
+    </form>
+
+    {% with messages = get_flashed_messages() %} 
+    {% if messages %} 
+    <div class="alert alert-success flash"> 
+        {% for message in messages %} 
+        <p>{{ message }}</p> 
+        {% endfor %} 
+    </div> 
+    {% endif %} 
+    {% endwith %}
+
+    <div class="row">
+        {% for product in products %}
+        <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/' + product.id|string + '.jpg') }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">Danh mục: {{ product.category }}</p>
+                    <p class="card-text">Giá: {{ product.price }} VNĐ</p>
+                    <p class="card-text">Số lượng: {{ product.quantity }}</p>
+                    <form action="{{ url_for('upload_image', id=product.id) }}" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input type="file" name="image" accept="image/jpeg" class="form-control-file mb-2">
+                            <button type="submit" class="btn btn-secondary btn-block">Thay đổi hình ảnh</button>
+                        </div>
+                    </form>
+                    <a href="{{ url_for('edit_product', id=product.id) }}" class="btn btn-warning btn-block">Chỉnh sửa</a>
+                    <a href="{{ url_for('delete_product', id=product.id) }}" class="btn btn-danger btn-block" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">Xóa</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

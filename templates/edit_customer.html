@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Chỉnh sửa Khách hàng</h2>
+<form method="POST">
+    <input type="text" name="name" value="{{ customer['name'] }}" required>
+    <input type="text" name="phone" value="{{ customer['phone'] }}" required>
+    <input type="text" name="address" value="{{ customer['address'] }}" required>
+    <button type="submit">Cập nhật khách hàng</button>
+</form>
+<a href="{{ url_for('customers') }}">Quay lại</a>
+{% endblock %}

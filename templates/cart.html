@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Giỏ hàng</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Trang chủ</a>
+            <a href="{{ url_for('products') }}">Sản phẩm</a>
+            <a href="{{ url_for('customers') }}">Khách hàng</a>
+            <a href="{{ url_for('invoices') }}">Hóa đơn</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Sản phẩm trong giỏ hàng</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Tổng</th>
+            </tr>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>
+                    {% for item in session.cart %}
+                        {% if item.product_id == product.id %}
+                            {{ item.quantity }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for item in session.cart %}
+                        {% if item.product_id == product.id %}
+                            {{ item.quantity * product.price }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h3>Tổng giá: {{ total_price }}</h3>
+    </main>
+</body>
+</html>
