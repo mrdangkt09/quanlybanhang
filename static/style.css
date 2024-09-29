@@ -1,7 +1,7 @@
 /* Cấu hình chung cho toàn trang */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f4f4f9;
     margin: 0;
     padding: 0;
     overflow-x: hidden; /* Ẩn thanh cuộn ngang */
@@ -18,7 +18,7 @@ body {
 }
 
 header {
-    background: linear-gradient(90deg, #4CAF50, #43A047);  /* Thêm hiệu ứng gradient */
+    background: linear-gradient(90deg, #4CAF50, #43A047); /* Thêm hiệu ứng gradient */
     color: white;
     padding: 20px;
     text-align: center;
@@ -35,69 +35,99 @@ header {
     }
 }
 
-nav {
-    margin: 15px 0;
-    text-align: center;
-}
-
-nav a {
-    margin: 0 15px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background 0.3s ease, transform 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.1);
-    animation: bounceIn 1s; /* Hiệu ứng bounce cho các link điều hướng */
-}
-
-nav a:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-5px) scale(1.1); /* Kết hợp hiệu ứng hover nâng và phóng to */
-}
-
-@keyframes bounceIn {
-    0% {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(1.05);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+/* Container cho phần đăng nhập/đăng ký */
+.form-container {
+    max-width: 400px;
+    margin: 100px auto;
     padding: 20px;
-    animation: slideIn 1s ease-in-out; /* Thêm hiệu ứng slide-in */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.8s ease-in-out; /* Hiệu ứng xuất hiện cho form */
 }
 
 @keyframes slideIn {
     from {
-        transform: translateX(-50px);
+        transform: translateY(-50px);
         opacity: 0;
     }
     to {
-        transform: translateX(0);
+        transform: translateY(0);
         opacity: 1;
     }
 }
 
-/* Flash Message */
-.flash {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
+/* Tiêu đề */
+.form-title {
     text-align: center;
-    animation: fadeIn 1s ease-out; /* Hiệu ứng xuất hiện */
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Nhóm Form */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Nhãn */
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Input */
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus {
+    border-color: #4CAF50; /* Đổi màu viền khi focus */
+}
+
+/* Nút */
+.form-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.form-button:hover {
+    background-color: #4cae4c;
+    transform: translateY(-2px); /* Hiệu ứng nâng khi hover */
+}
+
+/* Flash Message */
+.flash-messages {
+    list-style-type: none;
+    padding: 0;
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Đường dẫn */
+p {
+    text-align: center;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 /* Sản phẩm và hiệu ứng hover */
@@ -140,10 +170,12 @@ nav a:hover {
     width: 100%;
     border-radius: 5px;
     transition: transform 0.5s ease; /* Hiệu ứng phóng to ảnh khi hover */
+    max-height: 200px; /* Giới hạn chiều cao */
+    object-fit: cover; /* Đảm bảo ảnh được cắt theo tỷ lệ */
 }
 
 .product-card:hover img {
-    transform: scale(1.2); /* Phóng to ảnh sản phẩm khi hover */
+    transform: scale(1.1); /* Phóng to ảnh sản phẩm khi hover */
 }
 
 .product-card h3 {
@@ -238,54 +270,8 @@ footer {
         transform: translateY(0);
     }
 }
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-    opacity: 0;
-    animation: fadeInGrid 1.5s ease forwards; /* Hiệu ứng xuất hiện dần */
-}
 
-@keyframes fadeInGrid {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.product-card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.5s, box-shadow 0.5s, background 0.3s ease-in-out;
-    position: relative;
-    overflow: hidden;
-}
-
-.product-card:hover {
-    transform: translateY(-10px) scale(1.05); /* Phóng to và di chuyển lên khi hover */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(145deg, #f4f4f4, #f1f1f1); /* Thêm hiệu ứng đổi màu khi hover */
-}
-
-.product-card img {
-    width: 100%;
-    border-radius: 5px;
-    transition: transform 0.5s ease; /* Hiệu ứng phóng to ảnh khi hover */
-}
-
-.product-card:hover img {
-    transform: scale(1.2); /* Phóng to ảnh sản phẩm khi hover */
-}
-.container {
-    text-align: center;
-}
-
+/* Hero Section */
 .hero {
     background: #f5f5f5;
     padding: 20px;
@@ -304,6 +290,7 @@ footer {
     color: #777;
 }
 
+/* Card Grid */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -347,487 +334,4 @@ footer {
 
 .card-button:hover {
     background-color: #0056b3;
-}
-/* Tổng quát */
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
-}
-
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Header */
-.main-header {
-    background-color: #007bff;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.main-header h1 {
-    margin: 0;
-    font-size: 28px;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
-
-/* Form */
-.customer-form-section {
-    margin-bottom: 30px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.customer-form input {
-    width: calc(33% - 10px);
-    padding: 10px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.customer-form button {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.customer-form button:hover {
-    background-color: #218838;
-}
-
-/* Bảng danh sách khách hàng */
-.customer-list-section {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.customer-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.customer-table th,
-.customer-table td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
-}
-
-.customer-table th {
-    background-color: #007bff;
-    color: white;
-}
-
-.customer-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.customer-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Buttons */
-.btn-edit {
-    color: #fff;
-    background-color: #ffc107;
-    padding: 8px 12px;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-right: 5px;
-}
-
-.btn-edit:hover {
-    background-color: #e0a800;
-}
-
-.btn-delete {
-    color: #fff;
-    background-color: #dc3545;
-    padding: 8px 12px;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.btn-delete:hover {
-    background-color: #c82333;
-}
-/* Tổng quát */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Header */
-.main-header {
-    background-color: #17a2b8;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.main-header h1 {
-    margin: 0;
-    font-size: 28px;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
-
-/* Form */
-.invoice-form-section {
-    margin-bottom: 30px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.invoice-form input {
-    width: calc(50% - 10px);
-    padding: 10px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.invoice-form button {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.invoice-form button:hover {
-    background-color: #218838;
-}
-
-/* Bảng danh sách hóa đơn */
-.invoice-list-section {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.invoice-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.invoice-table th,
-.invoice-table td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
-}
-
-.invoice-table th {
-    background-color: #17a2b8;
-    color: white;
-}
-
-.invoice-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.invoice-table tr:hover {
-    background-color: #f1f1f1;
-}
-/* CSS thêm nút xóa */
-.delete-button {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.delete-button:hover {
-    background-color: #c82333;
-}
-
-/* Các phần khác của CSS để bố cục đẹp */
-.invoice-form-section, .invoice-list-section {
-    margin: 20px;
-}
-
-.invoice-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.invoice-table th, .invoice-table td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
-}
-
-.invoice-table th {
-    background-color: #f4f4f4;
-}
-/* Đặt các thiết lập mặc định */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-/* Đầu trang */
-.main-header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-.main-header nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-}
-
-.main-header nav a:hover {
-    text-decoration: underline;
-}
-
-/* Phần chính */
-.container {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Form hóa đơn */
-.invoice-form-section h2 {
-    margin-bottom: 15px;
-}
-
-.invoice-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.invoice-form input,
-.invoice-form button {
-    padding: 10px;
-    margin: 10px 0;
-    font-size: 16px;
-}
-
-.invoice-form button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.invoice-form button:hover {
-    background-color: #45a049;
-}
-
-/* Bảng danh sách hóa đơn */
-.invoice-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.invoice-table th, .invoice-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.invoice-table th {
-    background-color: #f2f2f2;
-}
-
-.invoice-table tr:hover {
-    background-color: #f9f9f9;
-}
-
-/* Nút xóa */
-.delete-button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.delete-button:hover {
-    background-color: darkred;
-}
-.report-summary {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-.report-summary h3 {
-    color: #333;
-}
-
-.report-summary p {
-    font-size: 1.5em;
-    color: #555;
-    margin: 10px 0;
-}
-
-.charts {
-    margin-top: 20px;
-}
-
-#revenueChart {
-    max-width: 600px;
-    margin: 0 auto;
-}
-/* CSS cho trang web quản lý bán hàng */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background-color: #4CAF50; /* Màu nền cho header */
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-}
-
-header h1 {
-    margin: 0;
-}
-
-nav {
-    margin-top: 10px;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-nav ul li a:hover {
-    background-color: #45a049; /* Màu nền khi di chuột vào liên kết */
-}
-
-.container {
-    width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px; /* Bo góc cho container */
-}
-
-.flash {
-    padding: 10px;
-    background-color: #ffdddd; /* Màu nền cho thông báo */
-    color: #d8000c; /* Màu chữ cho thông báo */
-    border: 1px solid #d8000c;
-    margin-bottom: 20px;
-    border-radius: 5px;
-}
-.search-results {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f9f9f9; /* Màu nền cho khu vực tìm kiếm */
-    border-radius: 5px; /* Bo góc cho khu vực tìm kiếm */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Bóng đổ cho khu vực tìm kiếm */
-}
-
-.search-results ul {
-    list-style-type: none; /* Bỏ dấu chấm đầu dòng */
-    padding: 0; /* Bỏ padding */
-}
-
-.result-item {
-    padding: 10px;
-    border-bottom: 1px solid #e0e0e0; /* Viền dưới cho mỗi mục */
-    transition: background-color 0.3s; /* Hiệu ứng chuyển động */
-}
-
-.result-item:hover {
-    background-color: #f1f1f1; /* Nền sáng hơn khi di chuột */
-}
-
-.no-results {
-    color: #d8000c; /* Màu đỏ cho thông báo không có kết quả */
-    font-weight: bold; /* Đậm chữ */
-    text-align: center; /* Căn giữa */
-    margin-top: 10px;
 }
